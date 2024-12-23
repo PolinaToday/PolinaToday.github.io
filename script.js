@@ -1,25 +1,34 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Получаем кнопку "Купить" и модальное окно
-    var buyButton = document.getElementById("buyButton");
-    var modal = document.getElementById("myModal");
+function ballBounce(e) {
+  if (e.className.indexOf(" bounce") > -1) {
+    return;
+  }
+  toggleBounce(e);
+}
 
-    // Получаем элемент для закрытия модального окна
-    var closeButton = document.getElementsByClassName("close")[0];
+function toggleBounce(element) {
+  element.classList.add("bounce");
+  setTimeout(() => {
+    element.classList.remove("bounce");
+    element.classList.add("bounce1");
+    setTimeout(() => {
+      element.classList.remove("bounce1");
+      element.classList.add("bounce2");
+      setTimeout(() => {
+        element.classList.remove("bounce2");
+        element.classList.add("bounce3");
+        setTimeout(() => {
+          element.classList.remove("bounce3");
+        }, 300);
+      }, 300);
+    }, 300);
+  }, 300);
+}
 
-    // Открываем модальное окно при клике на кнопку "Купить"
-    buyButton.onclick = function() {
-        modal.style.display = "block";
-    }
+// Обработчики событий на элементы с классом "b-ball_bounce"
+const balls = document.querySelectorAll('.b-ball_bounce');
 
-    // Закрываем модальное окно при клике на кнопку закрытия
-    closeButton.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // Закрываем модальное окно при клике вне его области
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+balls.forEach(ball => {
+  ball.addEventListener('mouseenter', function () {
+    ballBounce(this);
+  });
 });
