@@ -25,7 +25,7 @@ body {
   animation: glow 1s infinite alternate;
 }
 
-/* Разные цвета лампочек */
+/* Разны цвета лампочек */
 .bulb:nth-child(1) { background-color: yellow; }
 .bulb:nth-child(2) { background-color: red; }
 .bulb:nth-child(3) { background-color: green; }
