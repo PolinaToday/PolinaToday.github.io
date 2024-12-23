@@ -1,64 +1,53 @@
-function ballBounce(e) {
-  var i = e;
-  if (e.className.indexOf(" bounce") > -1) {
-    return;
+body {
+  margin: 0;
+  background-color: #1e1e2f;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.garland {
+  display: flex;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.bulb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: glow 1s infinite alternate;
+}
+
+/* Разные цвета лампочек */
+.bulb:nth-child(1) { background-color: yellow; }
+.bulb:nth-child(2) { background-color: red; }
+.bulb:nth-child(3) { background-color: green; }
+.bulb:nth-child(4) { background-color: blue; }
+.bulb:nth-child(5) { background-color: violet; }
+
+/* Анимация мерцания */
+@keyframes glow {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.9);
   }
-  toggleBounce(i);
-}
-
-function toggleBounce(i){
-  i.classList.add("bounce");
-  function n() {
-    i.classList.remove("bounce")
-    i.classList.add("bounce1");
-    function o() {
-      i.classList.remove("bounce1")
-      i.classList.add("bounce2");
-      function p() {
-        i.classList.remove("bounce2")
-        i.classList.add("bounce3");
-        function q() {
-          i.classList.remove("bounce3");
-        }
-        setTimeout(q, 300)
-      }
-      setTimeout(p, 300)
-    }
-    setTimeout(o, 300)
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
-  setTimeout(n, 300)
 }
 
-var array1 = document.querySelectorAll('.b-ball_bounce')
-var array2 = document.querySelectorAll('.b-ball_bounce .b-ball__right')
-
-for(var i = 0; i < array1.length; i++) {
-  array1[i].addEventListener('mouseenter', function() {
-    ballBounce(this)
-  })
+/* Задержки анимации */
+.bulb:nth-child(odd) {
+  animation-delay: 0.2s;
 }
-
-for(var i = 0; i < array2.length; i++) {
-  array2[i].addEventListener('mouseenter', function() {
-    ballBounce(this)
-  })
+.bulb:nth-child(even) {
+  animation-delay: 0.5s;
 }
-
-let l = ["49", "50", "51", "52", "53", "54", "55", "56", "57", "48", "189", "187", "81", "87", "69", "82", "84", "89", "85", "73", "79", "80", "219", "221", "65", "83", "68", "70", "71", "72", "74", "75", "76", "186", "222", "220"];
-let k = ["90", "88", "67", "86", "66", "78", "77", "188", "190", "191"];
-let a = {};
-for (let e = 0, c = l.length; e < c; e++) {
-    a[l[e]] = e
-}
-for (let e = 0, c = k.length; e < c; e++) {
-    a[k[e]] = e
-}
-
-document.addEventListener('keydown', function (j) {
-  let i = j.target;
-  if (j.which in a) {
-    let index = parseInt(a[j.which]);
-    let ball = document.querySelector('[data-note="' + index + '"]');
-    toggleBounce(ball);
-  }
-});
