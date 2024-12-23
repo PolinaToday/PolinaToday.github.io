@@ -5,7 +5,7 @@ body{
 	padding:0 0 1em 0;
 	background-image: url('balls/b-head-decor_newyear.png');
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: contain;
 	background-attachment: fixed;
 	background-position: center top;
 }
